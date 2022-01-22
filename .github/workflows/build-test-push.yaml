@@ -20,7 +20,7 @@ jobs:
           echo "Running script: $BUILD_SCRIPT"
           sleep 5
         env:
-          BUILD_SCRIPT: ${{ github.event.inputs.build-script }}
+          BUILD_SCRIPT: ${{ inputs.build-script }}
       - name: Setup comoponent test infrastructure
         run: echo Setting up component test infrastructure; sleep 5            
       - name: Running component tests
