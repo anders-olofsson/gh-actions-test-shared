@@ -11,6 +11,11 @@ on:
         type: string
         required: true
         default: 'Dummy'
+      image:
+        description: 'Image to deploy'
+        type: string
+        required: true
+        default: 'Dummy'
 
   workflow_dispatch:
     inputs:
