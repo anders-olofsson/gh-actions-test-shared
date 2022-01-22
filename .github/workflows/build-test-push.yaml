@@ -4,19 +4,23 @@ permissions: read-all
 
 on:
   workflow_call:
+    inputs:
+      build-script:
+        description: Name of build script
+        type: string
 
 jobs:
   build-test-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        run: |
-          docker version
-          docker-compose version
-          echo Checking out code
-          sleep 5            
+        uses: actions/checkout@v2
       - name: Build and run unit/integration tests
-        run: echo Building and running tests; sleep 5
+        run: |
+          echo "Running script: $BUILD_SCRIPT"
+          sleep 5
+        env:
+          BUILD_SCRIPT: ${{ github.event.inputs.build-script }}
       - name: Setup comoponent test infrastructure
         run: echo Setting up component test infrastructure; sleep 5            
       - name: Running component tests
