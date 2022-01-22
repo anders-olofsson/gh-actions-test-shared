@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy
+
+# Controls when the workflow will run
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version to deploy'
+        type: string
+        required: true
+        default: 'Dummy'
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy'
+        type: text
+        required: true
+        default: 'Dummy'
+
+jobs:
+  deploy-to-test:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Deploy to Test
+        env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo "Event Context:"
+          echo "$EVENT_CONTEXT"
+          sleep 5
+
+  deploy-to-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: [deploy-to-test]
+    steps:
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to production"
+          sleep 5
