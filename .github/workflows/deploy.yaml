@@ -46,24 +46,24 @@ jobs:
           echo "Deploying to production"
           sleep 5
 
-  verify-prod-deployment:
-    runs-on: ubuntu-latest
-    needs: [deploy-to-prod]
-    steps:
-      - name: Verify Deployment
-        run: |
-          echo "Please verify..."
-          sleep 30
-      - name: Verification completed
-        run: echo "::set-output verified=yes"
+#  verify-prod-deployment:
+#    runs-on: ubuntu-latest
+#    needs: [deploy-to-prod]
+#    steps:
+#      - name: Verify Deployment
+#        run: |
+#          echo "Please verify..."
+#          sleep 30
+#      - name: Verification completed
+#        run: echo "::set-output verified=yes"
 
-  handle-cancelation:
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    needs: [verify-prod-deployment]
-    steps:
-      - name: Show Outcome
-        env:
-          JOBS_CONTEXT: ${{ toJson(needs) }}
-        run: |
-          echo "Status: $JOBS_CONTEXT"
+#  handle-cancelation:
+#    if: ${{ always() }}
+#    runs-on: ubuntu-latest
+#    needs: [verify-prod-deployment]
+#    steps:
+#      - name: Show Outcome
+#        env:
+#          JOBS_CONTEXT: ${{ toJson(needs) }}
+#        run: |
+#          echo "Status: $JOBS_CONTEXT"
