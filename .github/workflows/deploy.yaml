@@ -62,6 +62,6 @@ jobs:
     steps:
       - name: Show Outcome
         env:
-          JOBS_CONTEXT: ${{ toJson(jobns) }}
+          JOBS_CONTEXT: ${{ toJson(jobs) }}
         run: |
           echo "Status: $JOBS_CONTEXT"
