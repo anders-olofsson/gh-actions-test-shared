@@ -55,3 +55,15 @@ jobs:
         run: |
           echo "Please verify..."
           sleep 30
+
+  handle-cancelation:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: [verify-prod-deployment]
+    environment: prod
+    steps:
+      - name: Show Outcome
+        env:
+          OUTCOME: ${{ steps.verify-prod-deployment.outcome }}
+        run: |
+          echo "Outcome was: $OUTCOME"
