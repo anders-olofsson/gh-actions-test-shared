@@ -54,6 +54,8 @@ jobs:
         run: |
           echo "Please verify..."
           sleep 30
+      - name: Verification completed
+        run: echo "::set-output verified=yes"
 
   handle-cancelation:
     if: ${{ always() }}
@@ -62,6 +64,6 @@ jobs:
     steps:
       - name: Show Outcome
         env:
-          JOBS_CONTEXT: ${{ toJson(jobs) }}
+          JOBS_CONTEXT: ${{ toJson(needs) }}
         run: |
           echo "Status: $JOBS_CONTEXT"
