@@ -62,6 +62,6 @@ jobs:
     steps:
       - name: Show Outcome
         env:
-          OUTCOME: ${{ jobs.verify-prod-deployment.outcome }}
+          JOBS_CONTEXT: ${{ toJson(jobns) }}
         run: |
-          echo "Outcome was: $OUTCOME"
+          echo "Status: $JOBS_CONTEXT"
