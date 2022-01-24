@@ -48,8 +48,7 @@ jobs:
 
   verify-prod-deployment:
     runs-on: ubuntu-latest
-    environment: prod
-    needs: [deploy-to-test]
+    needs: [deploy-to-prod]
     steps:
       - name: Verify Deployment
         run: |
@@ -60,10 +59,9 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     needs: [verify-prod-deployment]
-    environment: prod
     steps:
       - name: Show Outcome
         env:
-          OUTCOME: ${{ steps.verify-prod-deployment.outcome }}
+          OUTCOME: ${{ jobs.verify-prod-deployment.outcome }}
         run: |
           echo "Outcome was: $OUTCOME"
