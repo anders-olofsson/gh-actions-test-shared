@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Deploy
 
 # Controls when the workflow will run
@@ -47,3 +45,13 @@ jobs:
         run: |
           echo "Deploying to production"
           sleep 5
+
+  verify-prod-deployment:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: [deploy-to-test]
+    steps:
+      - name: Verify Deployment
+        run: |
+          echo "Please verify..."
+          sleep 30
