@@ -32,6 +32,7 @@ jobs:
         env:
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
+          echo "inputs.version: ${{ github.event.inputs.version }}
           echo "Event Context:"
           echo "$EVENT_CONTEXT"
           sleep 5
