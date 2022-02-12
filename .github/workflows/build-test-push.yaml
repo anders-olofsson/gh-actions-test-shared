@@ -35,7 +35,7 @@ jobs:
         id: push
         run: |
           echo Pushing successfully build image
-          echo "::set-output name=version::1.2.3.4"
+          echo "::set-output name=version::1.2.3.4-$(git rev-parse --short HEAD)"
 
           
 #  static-code-analysis:
