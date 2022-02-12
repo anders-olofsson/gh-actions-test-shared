@@ -11,7 +11,7 @@ on:
     outputs:
       build_version:
         description: "Build version"
-        value: ${{ jobs.build-test-and-push.build_version }}
+        value: ${{ jobs.build-test-and-push.outputs.build_version }}
 
 jobs:
   build-test-and-push:
