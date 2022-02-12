@@ -12,6 +12,8 @@ on:
 jobs:
   build-test-and-push:
     runs-on: ubuntu-latest
+    outputs:
+      build_version: ${{ steps.push.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +28,11 @@ jobs:
       - name: Running component tests
         run: echo Running component tests; sleep 5
       - name: Pushing Docker Image
-        run: echo Pushing successfully build image
+        id: push
+        run: |
+          echo Pushing successfully build image
+          echo "::set-output name=version::1.2.3.4"
+
           
 #  static-code-analysis:
 #    runs-on: ubuntu-latest
