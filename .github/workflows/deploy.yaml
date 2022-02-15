@@ -30,6 +30,8 @@ jobs:
   deploy-to-test:
     runs-on: ubuntu-latest
     environment: test
+    concurrency:
+      group: deploy-test
     steps:
       - name: Deploy to Test
         env:
@@ -39,11 +41,13 @@ jobs:
           echo "env.version: ${{ env.version }}"
           echo "Event Context:"
           echo "$EVENT_CONTEXT"
-          sleep 5
+          sleep 60
 
   deploy-to-prod:
     runs-on: ubuntu-latest
     environment: prod
+    concurrency:
+      group: deploy-prod
     needs: [deploy-to-test]
     steps:
       - name: Deploy to Production
