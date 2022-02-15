@@ -32,6 +32,7 @@ jobs:
     environment: test
     concurrency:
       group: deploy-test
+      cancel-in-progress: false
     steps:
       - name: Deploy to Test
         env:
@@ -48,6 +49,7 @@ jobs:
     environment: prod
     concurrency:
       group: deploy-prod
+      cancel-in-progress: false      
     needs: [deploy-to-test]
     steps:
       - name: Deploy to Production
