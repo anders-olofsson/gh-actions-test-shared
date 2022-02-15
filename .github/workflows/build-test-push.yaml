@@ -29,7 +29,7 @@ jobs:
       - name: Build and run unit/integration tests
         run: |
           echo "Running script $BUILD_SCRIPT"
-          echo "Branch is: ${GITHUB_REF##*/}"
+          echo "Branch is: $GITHUB_REF"
           sleep 5
         env:
           BUILD_SCRIPT: ${{ inputs.build-script }}
