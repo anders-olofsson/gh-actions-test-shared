@@ -28,7 +28,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build and run unit/integration tests
         run: |
-          echo "Running script $BUILD_SCRIPT for branch ${GITHUB_REF##*/}"
+          echo "Running script $BUILD_SCRIPT"
+          echo "Branch is: ${GITHUB_REF##*/}"
           sleep 5
         env:
           BUILD_SCRIPT: ${{ inputs.build-script }}
