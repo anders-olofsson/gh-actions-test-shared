@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     concurrency:
-      group: deploy-test
+      group: deploy-test-${{ inputs.image }}
       cancel-in-progress: false
     steps:
       - name: Deploy to Test
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     concurrency:
-      group: deploy-prod
+      group: deploy-prod-${{ inputs.image }}
       cancel-in-progress: false      
     needs: [deploy-to-test]
     steps:
